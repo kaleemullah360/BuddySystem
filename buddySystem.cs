@@ -143,7 +143,8 @@ namespace BuddySystem_Space {
         /*============ block removing in buddy system. ======= */
         public static void remove_Block(string  process_Name, Block[] remaining_Blocks, int size){
         	for (int index = 0; index < remaining_Blocks.Length; index++){
-        		if (remaining_Blocks[index].p_Name == process_Name && remaining_Blocks[index].t_Size == size){
+        		if (remaining_Blocks[index].p_Name == process_Name){
+        			if(remaining_Blocks[index].t_Size == size){
         			remaining_Blocks[index].p_Name = process_Name;
         			remaining_Blocks[index].is_Free = true;
         		}else{
@@ -154,6 +155,7 @@ namespace BuddySystem_Space {
         			Console.WriteLine("\nPress any key to exit.\n");
         			Console.ReadKey();
         			Environment.Exit(0);	
+        		}
         		}
         	}
         }
