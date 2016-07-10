@@ -91,9 +91,9 @@ namespace BuddySystem_Space {
 			one_Block.t_Size = chunk_Size;
 			one_Block.is_Free = true;
 
-			blocks_List.add(one_Block);
+			blocks_List.Add(one_Block);
 			// view our list to show that the which block is free and which one is in use
-			memory_View(List <Block> blocks_List);
+			memory_View(blocks_List);
 		}
 
 	}
