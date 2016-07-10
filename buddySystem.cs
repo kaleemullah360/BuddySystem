@@ -218,9 +218,9 @@ namespace BuddySystem_Space {
 						memory_View(blocks_List);
 						}else if(param[0] == "L" || param[0] == "l"){
                     	// incase of Process Leave, then need to free memory
-							Console.Write("Process " + param[1] + " Left. Mem Released: " + param[2] + "KB\n");
                     	// remove the new process momory
 							remove_Block(param[1], remaining_Blocks, int.Parse(param[2]));
+							Console.Write("Process " + param[1] + " Left. Mem Released: " + param[2] + "KB\n");
                     	// merge back freed blocks
 							redeem_Block(remaining_Blocks, blocks_List, process_Name);
 						// view our list to show that the which block is free and which one is in use
