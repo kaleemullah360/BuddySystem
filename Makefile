@@ -1,8 +1,8 @@
 compile:
-	dmcs kaleem.cs
+	dmcs buddySystem.cs
 
 run:
-	./kaleem.exe
+	./buddySystem.exe
 
 clean:
 	rm -f *.exe

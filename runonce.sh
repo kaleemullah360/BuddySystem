@@ -14,6 +14,15 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	sudo apt-get install mono-dmcs
 	echo "Mono Succefully Installed."
+	
+	echo 
+	echo "Now Installing dependancies.."
+	echo
+	echo "Please Wait it will take a while."
+	sudo apt-get install mono-reference-assemblies-2.0 mono-devel
+	sudo apt-get install libmono-corlib4.5-cil
+	echo
+	echo "Succefully Installed."
 	echo "Compile: dmcs program.cs"
 	echo
 	echo "Run ./program.exe"
