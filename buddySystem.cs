@@ -55,23 +55,24 @@ namespace BuddySystem_Space {
 		}
 
 		static void Main(string []args){
+			int milliSec = 3500;
 			String Result = "\0"; 
-			Console.WriteLine("What should be the Size of our Buddy System ? (Must be Integer)");
+			Console.Write("What should be the Size of our Buddy System ? (Must be Integer)\n");
 
 			int buddy_System_Max_Mem_Size;
 			Result = Console.ReadLine();
 			while(!Int32.TryParse(Result, out buddy_System_Max_Mem_Size))
 			{
-			   Console.WriteLine("Not a valid number, try again.");
+			   Console.Write("Not a valid number, try again.\n");
 			   Result = Console.ReadLine();
 			}
 
-			Console.WriteLine("What should be the min chunk size ? (Must be Integer)");
+			Console.Write("What should be the min chunk size ? (Must be Integer).\n");
 			int chunk_Size;
 			Result = Console.ReadLine();
 			while(!Int32.TryParse(Result, out chunk_Size))
 			{
-			   Console.WriteLine("Not a valid number, try again.");
+			   Console.Write("Not a valid number, try again.\n");
 			   Result = Console.ReadLine();
 			}
 
@@ -94,6 +95,32 @@ namespace BuddySystem_Space {
 			blocks_List.Add(one_Block);
 			// view our list to show that the which block is free and which one is in use
 			memory_View(blocks_List);
+
+			// we will scrap all the inputs parameters from an input file
+			string input_File = "input.txt";
+			// if our input file exist and is readable
+            using (StreamReader sR = new StreamReader(input_File))
+            {	
+            	// read the file till null is found
+            	while((string params = sR.ReadLine()) != null){
+
+            	// each row in the input files contains params as foloows:
+            	// | Function name      | Process Name | Memory Required   |
+            	// | E/L => Enter/Leave | A => (Name)  | 50 => (KB Memory) |
+            	// all params are TAB Separated
+
+                string[] param = params.Split('\t');
+                    Thread.Sleep(milliSec);
+
+                    if(param[0] == "E" || param[0] == "e"){
+                    	// incase of Process Entered Execution state
+                    	Console.Write("Process " + param[1] + " Entered. Mem Required: " + param[2] + "KB\n");
+                    }else if(param[0] == "L" || param[0] == "l"){
+                    	// incase of Process Leave, then need to free memory
+
+                    }
+            	}
+            }
 		}
 
 	}
