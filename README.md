@@ -1,8 +1,15 @@
-# BuddySystem
+# Part B BuddySystem
 
 Console base C# Application of BuddySystem Memory Mnagement in Operating System
 
 [Buddy memory allocation](https://en.wikipedia.org/wiki/Buddy_memory_allocation)
+
+## Group Members:
+
+1. Nayyar Ahmed <MSCS14059@ITU.EDU.PK>
+2. Tahir Ahmed  <MSCS14059@ITU.EDU.PK>
+3. Kaleem Ullah <MSCS14059@ITU.EDU.PK>
+4. Rai Rashid   <MSCS14059@ITU.EDU.PK>
 
 ## Dependancies:
 
