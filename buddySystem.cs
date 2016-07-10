@@ -147,11 +147,11 @@ namespace BuddySystem_Space {
         			remaining_Blocks[index].p_Name = process_Name;
         			remaining_Blocks[index].is_Free = true;
         		}else{
-					Console.Write("\n\nError: Segmentation Fault.\ninfo: the process trying to free more memory than allocated to it when Entered the System\n\n");
+        			Console.Write("\n\nError: Segmentation Fault.\ninfo: the process trying to free more memory than allocated to it when Entered the System\n\n");
 		            // Keep the console window open in debug mode.
-		            Console.WriteLine("\nPress any key to exit.\n");
-		            Console.ReadKey();
-		            Environment.Exit(0);	
+        			Console.WriteLine("\nPress any key to exit.\n");
+        			Console.ReadKey();
+        			Environment.Exit(0);	
         		}
         	}
         }
