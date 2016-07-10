@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Threading;
+using System.Collections.Specialized;
 
 namespace BuddySystem_Space {
 
@@ -21,6 +22,19 @@ namespace BuddySystem_Space {
 		}
 
 		public bool is_Free{
+			get;
+			set;
+		}
+	}
+
+	class ProcessMemory_Class{
+    // set the getter and setter for each Process required memory method
+		public string allocated_Mem{
+			get;
+			set;
+		}
+
+		public string p_Name{
 			get;
 			set;
 		}
@@ -141,21 +155,15 @@ namespace BuddySystem_Space {
         }
 
         /*============ block removing in buddy system. ======= */
-        public static void remove_Block(string  process_Name, Block[] remaining_Blocks, int size){
+        public static void remove_Block(string  process_Name, Block[] remaining_Blocks, int size, int chunk_Size){
+        	int deallocated_Memory = 0;
+        	int expected_Blocks = (size/chunk_Size) + 1;
         	for (int index = 0; index < remaining_Blocks.Length; index++){
+        		deallocated_Memory += chunk_Size;
+        	    Console.WriteLine(deallocated_Memory/chunk_Size + "AAA  Expected  "+expected_Blocks+"\n\n");
         		if (remaining_Blocks[index].p_Name == process_Name){
-        			if(remaining_Blocks[index].t_Size == size){
-        				remaining_Blocks[index].p_Name = process_Name;
-        				remaining_Blocks[index].is_Free = true;
-        			}else{
-        				Console.Write("\n\nError: Segmentation Fault.");
-        				Console.Write("\ninfo: the process "+ process_Name +" trying to free more memory than allocated to it on Leaving the System");
-        				Console.Write("\nPreviously Allocated Memory: "+remaining_Blocks[index].t_Size+ " KB, Trying To De-Allocate: "+size+" KB\n");
-		            // Keep the console window open in debug mode.
-        				Console.WriteLine("\nPress any key to exit.\n");
-        				Console.ReadKey();
-        				Environment.Exit(0);	
-        			}
+    				remaining_Blocks[index].p_Name = process_Name;
+    				remaining_Blocks[index].is_Free = true;
         		}
         	}
         }
@@ -194,6 +202,8 @@ namespace BuddySystem_Space {
 			// now we create a list of our newly created empty block array.
 			List<Block> blocks_List = new List<Block>();
 
+				// Shows a List of KeyValuePairs.
+			NameValueCollection  ProcessMemory_List = new NameValueCollection();
 			// we will scrap all the inputs parameters from an input file
 			string input_File = "input.txt";
 			// if our input file exist and is readable
@@ -216,14 +226,25 @@ namespace BuddySystem_Space {
 						Console.Write("Process " + param[1] + " Entered. Mem Required: " + param[2] + "KB\n");
                     	// allocate the new process momory
 						assign_Block(param[1], int.Parse(param[2]), remaining_Blocks);
+						ProcessMemory_List.Add(param[1], param[2]);
                     	// merge back freed blocks
 						redeem_Block(remaining_Blocks, blocks_List, process_Name);
 						// view our list to show that the which block is free and which one is in use
 						memory_View(blocks_List);
 						}else if(param[0] == "L" || param[0] == "l"){
 	                    	// incase of Process Leave, then need to free memory
+						string previouslyAllocated_Memory = ProcessMemory_List[param[1]];
+							if(previouslyAllocated_Memory != param[2]){
+		        				Console.Write("\n\nError: Segmentation Fault.");
+		        				Console.Write("\ninfo: the process "+ param[1] +" trying to free more memory than allocated to it on Leaving the System");
+		        				Console.Write("\nPreviously Allocated Memory: "+previouslyAllocated_Memory+ " KB, Trying To De-Allocate: "+param[2]+" KB\n");
+				            // Keep the console window open in debug mode.
+		        				Console.WriteLine("\nPress any key to exit.\n");
+		        				Console.ReadKey();
+		        				Environment.Exit(0);
+							}
 	                    	// remove the new process momory
-							remove_Block(param[1], remaining_Blocks, int.Parse(param[2]));
+							remove_Block(param[1], remaining_Blocks, int.Parse(param[2]), chunk_Size);
 							Console.Write("Process " + param[1] + " Left. Mem Released: " + param[2] + "KB\n");
                     		// merge back freed blocks
 							redeem_Block(remaining_Blocks, blocks_List, process_Name);

@@ -1,5 +1,5 @@
-E	A	32
-L	A	34
+E	A	319
+L	A	390
 E	B	63
 E	C	5
 E	D 	0
@@ -7,7 +7,6 @@ E	E	10
 E	F	30
 E	G	20
 E	H	40
-L	B	63
 E	I	10
 E	J	60
 Z	L	100
