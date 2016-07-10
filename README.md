@@ -31,7 +31,7 @@ Console base C# Application of BuddySystem Memory Mnagement in Operating System
 
   To allocate, round the requested size up to a power of two (as mentioned), and search the appropriate list. If it is empty, allocate a block of twice the size, split it into two, add half to the free list, and use the other half. (This is recursive: the recursion stops when either we successfully find a block which we can split, or we find that we have reached the largest size of block and there are no free blocks available.)
 
-  So if our 1MB memory is initially empty, and we want to allocate a 70K block, we round it up to 128K, and end up splitting the 1MB into two �meg blocks, splitting one of them into two 256K blocks, splitting one of them into two 128K blocks, and finally allocating one of the 128K blocks to the user:
+  So if our 1MB memory is initially empty, and we want to allocate a 70K block, we round it up to 128K, and end up splitting the 1MB into two blocks, splitting one of them into two 256K blocks, splitting one of them into two 128K blocks, and finally allocating one of the 128K blocks to the user:
 
     Round 70K allocation to a power of 2: 128K.
     Are there any 128K blocks available?
