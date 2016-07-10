@@ -143,17 +143,18 @@ namespace BuddySystem_Space {
         /*============ block removing in buddy system. ======= */
         public static void remove_Block(string  process_Name, Block[] remaining_Blocks){
         	for (int index = 0; index < remaining_Blocks.Length; index++){
-        		if (remaining_Blocks[i].p_Name == process_Name){
+        		if (remaining_Blocks[index].p_Name == process_Name){
         			remaining_Blocks[index].p_Name = process_Name;
         			remaining_Blocks[index].is_Free = true;
         		}
         	}
         }
 
+        /*============ Main Thread Start Here. ======= */
         static void Main(string []args){
         	int milliSec = 3500;
 			String Result = "\0"; // null
-			Console.Write("What should be the Size of our Buddy System ? (Must be Integer)\n");
+			Console.Write("What should be the Size of our Buddy System ? (Must be Integer i.e 1204)\n");
 
 			int buddy_System_Max_Mem_Size;
 			Result = Console.ReadLine();
@@ -163,7 +164,7 @@ namespace BuddySystem_Space {
 				Result = Console.ReadLine();
 			}
 
-			Console.Write("What should be the min chunk size ? (Must be Integer).\n");
+			Console.Write("What should be the min chunk size ? (Must be Integer i.e 16).\n");
 			int chunk_Size;
 			Result = Console.ReadLine();
 			while(!Int32.TryParse(Result, out chunk_Size))

@@ -4,8 +4,36 @@ Console base C# Application of BuddySystem Memory Mnagement in Operating System
 
 [Buddy memory allocation](https://en.wikipedia.org/wiki/Buddy_memory_allocation)
 
-# Introduction
+# Technical Details:
 
+	This project is created with Mono under Ubuntu.
+	If  you're not aware how to setup this project in Ubuntu OS just do
+
+	```sh
+	bash ./runonce.sh
+	```
+	it will install Mono along with its dependancies.
+
+
+# RUN Project in ubuntu
+
+	## compile program.
+
+	```sh
+	make compile
+	```
+	Then, to run the program do,
+
+	```sh
+	make run
+	```
+	for clean-up,
+
+	```sh
+	make clean
+	```
+
+# Introduction
 
 ## The buddy system
 
