@@ -1,5 +1,5 @@
 E	A	32
-L	A	34
+L	A	32
 E	B	63
 E	C	5
 E	D 	0
