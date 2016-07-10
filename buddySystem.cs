@@ -96,22 +96,22 @@ namespace BuddySystem_Space {
 
 		}
 
-        public static void redeem_Block(Block[] remaining_Blocks, List<Block> blocks_List, process_Name){
+        public static void redeem_Block(Block[] remaining_Blocks, List<Block> blocks_List, string process_Name){
 
             blocks_List.Clear();
             int memory = 0;
             for (int index = 0; index < remaining_Blocks.Length; index++){
                 if (remaining_Blocks[index].is_Free == false){
                     if (memory != 0){
-                        Block remaining_Blocks = new Block();
-                        remaining_Blocks.p_Name = process_Name;
-                        remaining_Blocks.is_Free = true;
-                        remaining_Blocks.t_Size = memory;
-                        blocks_List.Add(remaining_Blocks);
+                        Block free_Blocks = new Block();
+                        free_Blocks.p_Name = process_Name;
+                        free_Blocks.is_Free = true;
+                        free_Blocks.t_Size = memory;
+                        blocks_List.Add(free_Blocks);
                         memory = 0;
                     }
                     Block used_Block = new Block();
-                    used_Block.p_Name = remaining_Blocks[index].process_Name;
+                    used_Block.p_Name = remaining_Blocks[index].p_Name;
                     used_Block.t_Size = remaining_Blocks[index].t_Size;
                     used_Block.is_Free = false;
                     blocks_List.Add(used_Block);
@@ -122,11 +122,11 @@ namespace BuddySystem_Space {
             }
 
             if (memory != 0){
-                Block remaining_Blocks = new Block();
-                remaining_Blocks.p_Name = process_Name;
-                remaining_Blocks.is_Free = true;
-                remaining_Blocks.t_Size = memory;
-                blocks_List.Add(remaining_Blocks);
+                Block free_Blocks = new Block();
+                free_Blocks.p_Name = process_Name;
+                free_Blocks.is_Free = true;
+                free_Blocks.t_Size = memory;
+                blocks_List.Add(free_Blocks);
                 memory = 0;
             }
         }
