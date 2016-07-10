@@ -72,3 +72,5 @@ Console base C# Application of BuddySystem Memory Mnagement in Operating System
   Note that the buddy system is useful. Linux uses the buddy system to manage allocation of memory, possibly because it is allocating many structures which are already powers of two, like frames.
   
   [Source](http://dysphoria.net/OperatingSystems1/4_allocation_buddy_system.html)
+
+  ![Buddy System](buddysystem-image.jpg)
