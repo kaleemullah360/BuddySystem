@@ -4,7 +4,7 @@ Console base C# Application of BuddySystem Memory Mnagement in Operating System
 
 [Buddy memory allocation](https://en.wikipedia.org/wiki/Buddy_memory_allocation)
 
-# Technical Details:
+## Dependancies:
 
 This project is created with Mono JIT compiler version 4.2.1 (Debian 4.2.1.102+dfsg2-7ubuntu4).
 If you're not aware how to setup this project in Ubuntu OS just do
@@ -14,10 +14,7 @@ bash ./runonce.sh
 ```
 it will install Mono along with its dependancies.
 
-
-# RUN Project in ubuntu
-
-## compile program.
+### compile program.
 
 ```sh
 make compile
@@ -33,9 +30,9 @@ for clean-up,
 make clean
 ```
 
-# Introduction
+## Introduction
 
-## The buddy system
+### The buddy system
 
   Buddy system of memory management attempts to be fast at allocating block of correct size and also, easy to merge adjacent holes. (We saw when you sort a free list by block size that allocations are fast, but merging is very difficult.) Exploits fact that computers deal easily with powers of two.
 
@@ -47,7 +44,7 @@ make clean
 
   All allocations are rounded up to a power of two---70K allocations rounded up to 128K, 15K allocations rounded up to 16K, etc.
 
-## What a 'buddy' is
+### What a 'buddy' is
 
   The buddy system allows a single allocation block to be split, to form two blocks half the size of the parent block. These two blocks are known as 'buddies'. Part of the definition of a 'buddy' is that the buddy of block B must be the same size as B, and must be adjacent in memory (so that it is possible to merge them later).
 
@@ -55,7 +52,7 @@ make clean
 
   Not only must buddies be adjacent in memory, but the lower 'buddy' must be at a location divisible by their combined size. For example, of two 64K blocks, they are only buddies if the lower block lies at an address divisible by 128K. This ensures that if they are merged, the combined block maintains the property described above.
 
-## Allocating memory
+### Allocating memory
 
   To allocate, round the requested size up to a power of two (as mentioned), and search the appropriate list. If it is empty, allocate a block of twice the size, split it into two, add half to the free list, and use the other half. (This is recursive: the recursion stops when either we successfully find a block which we can split, or we find that we have reached the largest size of block and there are no free blocks available.)
 
@@ -77,7 +74,7 @@ make clean
     Split into two 128K blocks. Add one to the 128K list.
     Return the other 128K block. 
 
-## Deallocating memory
+### Deallocating memory
 
   When we deallocate a block, we add it to the appropriate list, then check to see if its 'buddy' (the other chip from off the same old block) is also on the list. If so, we can merge to two buddies, and add a block twice the size to the next higher list. Again, this recursively merges all buddies which can be merged. So assuming there is no other allocated memory in the system, and we wish to deallocate the block we allocated above:
 
@@ -93,7 +90,7 @@ make clean
                 Is the buddy of this 1M block on the 1M list?
                 No. Add this block to the 1M list. 
 
-## Advantages, disadvantages
+### Advantages, disadvantages
 
   Buddy system has advantages that it is fast to allocate memory, and fast to deallocate... but it wastes a lot of space in internal fragmentation, since all requests are rounded up to a power of two. On average 20% is wasted (apparently).
 
@@ -103,6 +100,6 @@ make clean
 
   ![Buddy System](buddysystem-image.jpg)
 
-# P.S:
+### P.S:
 We all knows well "Perfect Software is Myth :)"
 So there is room for improvements. you're legally entitled to use, re-distribute, make chages & improvements.
