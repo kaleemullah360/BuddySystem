@@ -28,6 +28,7 @@ namespace BuddySystem_Space {
 
 	class BuddySystem_Class{
 
+		/*============ initialize the block array i.e whole buddy system memory. ======= */
 		public static void memory_Declaration(Block[] remaining_Blocks, int chunk_Size, string process_Name){
 			
 			for (int index=0; index < remaining_Blocks.Length; index++){
@@ -38,8 +39,8 @@ namespace BuddySystem_Space {
 			}
 		}
 
+		/*============ method to show which block is free and which one is being used by which process. ======= */
 		public static void memory_View(List <Block> blocks_List){
-
 			// here we will look for each block and show its status
 			foreach (var block in blocks_List){
 				if(block.is_Free){
@@ -52,6 +53,47 @@ namespace BuddySystem_Space {
 			}
 
 			Console.Write("\n");
+		}
+
+		/*============ method to search the block which is suitable to hold process requires memory. ======= */
+		public static int search_Required_Block(int size, int current_Index, Block[] remaining_Blocks){
+			int block_Size = 0;
+            for (int index = current_Index; index < remaining_Blocks.Length; index++){
+                if (remaining_Blocks[index].is_Free == false){
+                    return 0;
+                }else{
+                    block_Size += remaining_Blocks[index].t_Size;
+                    if (block_Size >= size)
+                    return index;
+                }
+            }
+            return 0;
+		}
+
+		/*============ block allocation in buddy system. ======= */
+		public static void assign_Block(string process_Name, int size, Block[] remaining_Blocks){
+
+			for (int index=0; index < remaining_Blocks.Length; index++){
+				if (remaining_Blocks[index].is_Free == true && remaining_Blocks[index].t_Size >= size){	
+				// process can be fitted into the block
+                    remaining_Blocks[index].is_Free = false;
+					remaining_Blocks[index].p_Name = process_Name;
+                    break;
+                }else if (remaining_Blocks[index].is_Free == true && remaining_Blocks[index].t_Size <= size){ 
+                // if process can't be fitted into the block the find the block that full fill the requirements
+                	int required_Blocak = search_Required_Block(size, index, remaining_Blocks);
+                	if(required_Blocak !=0){ // we found that required block
+                        for (; index <= required_Blocak; index++){
+                            remaining_Blocks[index].is_Free = false;
+                            remaining_Blocks[index].p_Name = process_Name;
+                        }
+                        break;
+                    }
+
+                }
+
+			}
+
 		}
 
 		static void Main(string []args){
@@ -116,6 +158,7 @@ namespace BuddySystem_Space {
                     if(param[0] == "E" || param[0] == "e"){
                     	// incase of Process Entered Execution state
                     	Console.Write("Process " + param[1] + " Entered. Mem Required: " + param[2] + "KB\n");
+                    	assign_Block(param[1], int.Parse(param[2]), remaining_Blocks);
                     }else if(param[0] == "L" || param[0] == "l"){
                     	// incase of Process Leave, then need to free memory
 
