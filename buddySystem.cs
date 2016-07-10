@@ -184,6 +184,7 @@ namespace BuddySystem_Space {
 			// now we create a list of our newly created empty block array.
 			List<Block> blocks_List = new List<Block>();
 			// create a block and add it to list
+			/*
 			Block one_Block = new Block();
 			one_Block.p_Name = process_Name;
 			one_Block.t_Size = chunk_Size;
@@ -192,7 +193,7 @@ namespace BuddySystem_Space {
 			blocks_List.Add(one_Block);
 			// view our list to show that the which block is free and which one is in use
 			memory_View(blocks_List);
-
+			*/
 			// we will scrap all the inputs parameters from an input file
 			string input_File = "input.txt";
 			// if our input file exist and is readable
