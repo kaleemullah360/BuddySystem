@@ -96,9 +96,44 @@ namespace BuddySystem_Space {
 
 		}
 
+        public static void redeem_Block(Block[] remaining_Blocks, List<Block> blocks_List, process_Name){
+
+            blocks_List.Clear();
+            int memory = 0;
+            for (int index = 0; index < remaining_Blocks.Length; index++){
+                if (remaining_Blocks[index].is_Free == false){
+                    if (memory != 0){
+                        Block remaining_Blocks = new Block();
+                        remaining_Blocks.p_Name = process_Name;
+                        remaining_Blocks.is_Free = true;
+                        remaining_Blocks.t_Size = memory;
+                        blocks_List.Add(remaining_Blocks);
+                        memory = 0;
+                    }
+                    Block used_Block = new Block();
+                    used_Block.p_Name = remaining_Blocks[index].process_Name;
+                    used_Block.t_Size = remaining_Blocks[index].t_Size;
+                    used_Block.is_Free = false;
+                    blocks_List.Add(used_Block);
+
+                }else{
+                    memory += remaining_Blocks[index].t_Size;
+                }
+            }
+
+            if (memory != 0){
+                Block remaining_Blocks = new Block();
+                remaining_Blocks.p_Name = process_Name;
+                remaining_Blocks.is_Free = true;
+                remaining_Blocks.t_Size = memory;
+                blocks_List.Add(remaining_Blocks);
+                memory = 0;
+            }
+        }
+
 		static void Main(string []args){
 			int milliSec = 3500;
-			String Result = "\0"; 
+			String Result = "\0"; // null
 			Console.Write("What should be the Size of our Buddy System ? (Must be Integer)\n");
 
 			int buddy_System_Max_Mem_Size;
@@ -124,7 +159,7 @@ namespace BuddySystem_Space {
 			Block[] remaining_Blocks = new Block[block_Array_Size];
 
       		// fill our newly created array with empty processes and marking it available to use
-			String process_Name = "\0";
+			String process_Name = "\0";	// null
 			memory_Declaration(remaining_Blocks, chunk_Size, process_Name);
 			// now we create a list of our newly created empty block array.
 			List<Block> blocks_List = new List<Block>();
@@ -158,7 +193,12 @@ namespace BuddySystem_Space {
                     if(param[0] == "E" || param[0] == "e"){
                     	// incase of Process Entered Execution state
                     	Console.Write("Process " + param[1] + " Entered. Mem Required: " + param[2] + "KB\n");
+                    	// allocate the new process momory
                     	assign_Block(param[1], int.Parse(param[2]), remaining_Blocks);
+                    	// merge back freed blocks
+                    	redeem_Block(remaining_Blocks, blocks_List, process_Name);
+						// view our list to show that the which block is free and which one is in use
+						memory_View(blocks_List);
                     }else if(param[0] == "L" || param[0] == "l"){
                     	// incase of Process Leave, then need to free memory
 
