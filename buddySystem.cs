@@ -147,7 +147,9 @@ namespace BuddySystem_Space {
         			remaining_Blocks[index].p_Name = process_Name;
         			remaining_Blocks[index].is_Free = true;
         		}else{
-        			Console.Write("\n\nError: Segmentation Fault.\ninfo: the process trying to free more memory than allocated to it on Leaving the System\n\n");
+        			Console.Write("\n\nError: Segmentation Fault.");
+		            Console.WriteLine("\ninfo: the process "+ process_Name +" trying to free more memory than allocated to it on Leaving the System");
+		            Console.WriteLine("\nPreviously Allocated Memory: "+remaining_Blocks[index].t_Size+ "Trying De-Allocating: "+size+"\n");
 		            // Keep the console window open in debug mode.
         			Console.WriteLine("\nPress any key to exit.\n");
         			Console.ReadKey();
