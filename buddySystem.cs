@@ -102,14 +102,15 @@ namespace BuddySystem_Space {
             using (StreamReader sR = new StreamReader(input_File))
             {	
             	// read the file till null is found
-            	while((string params = sR.ReadLine()) != null){
+                string param_s;
+                while ((param_s = sR.ReadLine()) != null){
 
             	// each row in the input files contains params as foloows:
             	// | Function name      | Process Name | Memory Required   |
             	// | E/L => Enter/Leave | A => (Name)  | 50 => (KB Memory) |
             	// all params are TAB Separated
 
-                string[] param = params.Split('\t');
+                string[] param = param_s.Split('\t');
                     Thread.Sleep(milliSec);
 
                     if(param[0] == "E" || param[0] == "e"){
