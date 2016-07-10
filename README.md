@@ -6,32 +6,32 @@ Console base C# Application of BuddySystem Memory Mnagement in Operating System
 
 # Technical Details:
 
-	This project is created with Mono under Ubuntu.
-	If  you're not aware how to setup this project in Ubuntu OS just do
+This project is created with Mono JIT compiler version 4.2.1 (Debian 4.2.1.102+dfsg2-7ubuntu4).
+If you're not aware how to setup this project in Ubuntu OS just do
 
-	```sh
-	bash ./runonce.sh
-	```
-	it will install Mono along with its dependancies.
+```sh
+bash ./runonce.sh
+```
+it will install Mono along with its dependancies.
 
 
 # RUN Project in ubuntu
 
-	## compile program.
+## compile program.
 
-	```sh
-	make compile
-	```
-	Then, to run the program do,
+```sh
+make compile
+```
+Then, to run the program do,
 
-	```sh
-	make run
-	```
-	for clean-up,
+```sh
+make run
+```
+for clean-up,
 
-	```sh
-	make clean
-	```
+```sh
+make clean
+```
 
 # Introduction
 
@@ -102,3 +102,10 @@ Console base C# Application of BuddySystem Memory Mnagement in Operating System
   [Source](http://dysphoria.net/OperatingSystems1/4_allocation_buddy_system.html)
 
   ![Buddy System](buddysystem-image.jpg)
+
+
+# P.S:
+
+ We all knows well "Perfect Software is Myth :)"
+
+ So there is room for improvements. you're legally entitled to use, re-distribute, make chages & improvements.
