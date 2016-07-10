@@ -38,6 +38,22 @@ namespace BuddySystem_Space {
 			}
 		}
 
+		public static void memory_View(List <Block> blocks_List){
+
+			// here we will look for each block and show its status
+			foreach (var block in blocks_List){
+				if(block.is_Free){
+						// display free block memory size
+						Console.Write(" Free Memory: " + block.t_Size.ToString() + "KB\n");
+					}else{
+						// display allocated block memory size
+						Console.Write("Process: " + block.p_Name + " Used Memory: " + block.t_Size.ToString() + "KB\n");
+					}
+			}
+
+			Console.Write("\n");
+		}
+
 		static void Main(string []args){
 			String Result = "\0"; 
 			Console.WriteLine("What should be the Size of our Buddy System ? (Must be Integer)");
@@ -69,6 +85,15 @@ namespace BuddySystem_Space {
 			memory_Declaration(remaining_Blocks, chunk_Size, process_Name);
 			// now we create a list of our newly created empty block array.
 			List<Block> blocks_List = new List<Block>();
+			// create a block and add it to list
+			Block one_Block = new Block();
+			one_Block.p_Name = process_Name;
+			one_Block.t_Size = chunk_Size;
+			one_Block.is_Free = true;
+
+			blocks_List.add(one_Block);
+			// view our list to show that the which block is free and which one is in use
+			memory_View(List <Block> blocks_List);
 		}
 
 	}
