@@ -1,4 +1,4 @@
-# Part B BuddySystem
+# Part B: BuddySystem
 
 Console base C# Application of BuddySystem Memory Mnagement in Operating System
 
