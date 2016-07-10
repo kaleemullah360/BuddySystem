@@ -156,11 +156,7 @@ namespace BuddySystem_Space {
 
         /*============ block removing in buddy system. ======= */
         public static void remove_Block(string  process_Name, Block[] remaining_Blocks, int size, int chunk_Size){
-        	int deallocated_Memory = 0;
-        	int expected_Blocks = (size/chunk_Size) + 1;
         	for (int index = 0; index < remaining_Blocks.Length; index++){
-        		deallocated_Memory += chunk_Size;
-        	    Console.WriteLine(deallocated_Memory/chunk_Size + "AAA  Expected  "+expected_Blocks+"\n\n");
         		if (remaining_Blocks[index].p_Name == process_Name){
     				remaining_Blocks[index].p_Name = process_Name;
     				remaining_Blocks[index].is_Free = true;
