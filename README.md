@@ -103,9 +103,6 @@ make clean
 
   ![Buddy System](buddysystem-image.jpg)
 
-
 # P.S:
-
- We all knows well "Perfect Software is Myth :)"
-
- So there is room for improvements. you're legally entitled to use, re-distribute, make chages & improvements.
+We all knows well "Perfect Software is Myth :)"
+So there is room for improvements. you're legally entitled to use, re-distribute, make chages & improvements.
