@@ -45,7 +45,7 @@ namespace BuddySystem_Space {
 			foreach (var block in blocks_List){
 				if(block.is_Free){
 						// display free block memory size
-					Console.Write(" Free Memory: " + block.t_Size.ToString() + "KB\n");
+					Console.Write("Free Memory: " + block.t_Size.ToString() + "KB\n");
 				}else{
 						// display allocated block memory size
 					Console.Write("Process: " + block.p_Name + " Used Memory: " + block.t_Size.ToString() + "KB\n");
@@ -141,11 +141,17 @@ namespace BuddySystem_Space {
         }
 
         /*============ block removing in buddy system. ======= */
-        public static void remove_Block(string  process_Name, Block[] remaining_Blocks){
+        public static void remove_Block(string  process_Name, Block[] remaining_Blocks, int size){
         	for (int index = 0; index < remaining_Blocks.Length; index++){
-        		if (remaining_Blocks[index].p_Name == process_Name){
+        		if (remaining_Blocks[index].p_Name == process_Name && remaining_Blocks[index].t_Size == size){
         			remaining_Blocks[index].p_Name = process_Name;
         			remaining_Blocks[index].is_Free = true;
+        		}else{
+					Console.Write("\n\nError: Segmentation Fault.\ninfo: the process trying to free more memory than allocated to it when Entered the System\n\n");
+		            // Keep the console window open in debug mode.
+		            Console.WriteLine("\nPress any key to exit.\n");
+		            Console.ReadKey();
+		            Environment.Exit(0);	
         		}
         	}
         }
@@ -214,13 +220,13 @@ namespace BuddySystem_Space {
                     	// incase of Process Leave, then need to free memory
 							Console.Write("Process " + param[1] + " Left. Mem Released: " + param[2] + "KB\n");
                     	// remove the new process momory
-							remove_Block(param[1], remaining_Blocks);
+							remove_Block(param[1], remaining_Blocks, int.Parse(param[2]));
                     	// merge back freed blocks
 							redeem_Block(remaining_Blocks, blocks_List, process_Name);
 						// view our list to show that the which block is free and which one is in use
 							memory_View(blocks_List);
 						}else{
-							Console.Write("I Don't know what to do here because you made a wrong input. moving forward\n");
+							Console.Write("Error: Invalid input.\ninfo: moving forwards.\n");
 							continue;
 						}
 					}
