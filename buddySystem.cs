@@ -168,7 +168,7 @@ namespace BuddySystem_Space {
         static void Main(string []args){
         	int milliSec = 3500;
 			String Result = "\0"; // null
-			Console.Write("What should be the Size of our Buddy System ? (Must be Integer i.e 1204)\n");
+			Console.Write("What should be the Size of our Buddy System ? (Must be Integer i.e 1024)\n");
 
 			int buddy_System_Max_Mem_Size;
 			Result = Console.ReadLine();
