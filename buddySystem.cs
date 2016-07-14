@@ -22,6 +22,11 @@ namespace BuddySystem_Space {
 			set;
 		}
 
+		public int block_Number{
+			get;
+			set;
+		}
+
 		public bool is_Free{
 			get;
 			set;
