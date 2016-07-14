@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading;
 using System.Collections.Specialized;
 
+// this system does not full fill requirement so improvements is required
 namespace BuddySystem_Space {
 
   // our block has following class members
