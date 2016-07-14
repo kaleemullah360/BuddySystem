@@ -237,8 +237,9 @@ namespace BuddySystem_Space {
 		        				Console.Write("\nPreviously Allocated Memory: "+previouslyAllocated_Memory+ " KB, Trying To De-Allocate: "+param[2]+" KB\n");
 				            // Keep the console window open in debug mode.
 		        				Console.WriteLine("\nPress any key to exit.\n");
-                    // read input of type int from user
+                    // wait for any key is presses
 		        				Console.ReadKey();
+                    // exit the system with zero
 		        				Environment.Exit(0);
 							}
 	                    	// remove the new process momory
