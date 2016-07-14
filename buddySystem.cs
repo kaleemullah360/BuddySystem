@@ -237,6 +237,7 @@ namespace BuddySystem_Space {
 		        				Console.Write("\nPreviously Allocated Memory: "+previouslyAllocated_Memory+ " KB, Trying To De-Allocate: "+param[2]+" KB\n");
 				            // Keep the console window open in debug mode.
 		        				Console.WriteLine("\nPress any key to exit.\n");
+                    // read input of type int from user
 		        				Console.ReadKey();
 		        				Environment.Exit(0);
 							}
