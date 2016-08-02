@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 
 // this system does not full fill requirement so improvements is required
 // this system uses static blocks allocation methods
+// it create block of fixed size and then allocate upon tequirements
 namespace BuddySystem_Space {
 
   // our block has following class members
